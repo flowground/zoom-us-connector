@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "webinarId": {
+            "required": true,
+            "type": "integer"
+        }
+    }
+}

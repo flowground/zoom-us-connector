@@ -1,0 +1,46 @@
+{
+    "type": "object",
+    "properties": {
+        "accountId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Account options object",
+            "properties": {
+                "meeting_connectors": {
+                    "description": "Meeting Connector, multiple value separated by comma.",
+                    "type": "string"
+                },
+                "pay_mode": {
+                    "default": "master",
+                    "description": "Payee",
+                    "enum": [
+                        "master",
+                        "sub"
+                    ],
+                    "type": "string",
+                    "x-enum-descriptions": [
+                        "Master Account holder pays",
+                        "Sub Account holders pays"
+                    ]
+                },
+                "room_connectors": {
+                    "description": "Virtual Room Connector, multiple value separated by comma.",
+                    "type": "string"
+                },
+                "share_mc": {
+                    "default": false,
+                    "description": "Enable Share Meeting Connector.",
+                    "type": "boolean"
+                },
+                "share_rc": {
+                    "default": false,
+                    "description": "Enable Share Virtual Room Connector.",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

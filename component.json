@@ -1,0 +1,2356 @@
+{
+    "title": "Zoom",
+    "description": "API Description",
+    "docsUrl": "https://zoom.github.io/api",
+    "url": "https://api.apis.guru/v2/specs/zoom.us/2.0.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://api.zoom.us/v2",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "global": {
+                "label": "access_token (global)",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "accounts": {
+            "main": "./lib/actions/accounts.js",
+            "title": "List sub accounts",
+            "description": "List all the sub accounts under the master account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/accounts.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "accountCreate": {
+            "main": "./lib/actions/accountCreate.js",
+            "title": "Create a sub account",
+            "description": "Create a sub account under the master account <aside>Your account must be a master account and have this privilege to create sub account. Zoom only assign this privilege to trusted partner. The created user will not receive the confirmation email.</aside>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/accountCreate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "accountDisassociate": {
+            "main": "./lib/actions/accountDisassociate.js",
+            "title": "Disassociate an account",
+            "description": "Disassociate a sub account from the master account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/accountDisassociate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "account": {
+            "main": "./lib/actions/account.js",
+            "title": "Retrieve a sub account",
+            "description": "Retrieve a sub account under the master account <aside>Your account must be a master account and have this privilege to get sub account. Zoom only assign this privilege to trusted partner</aside>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/account.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "accountBilling": {
+            "main": "./lib/actions/accountBilling.js",
+            "title": "Retrieve billing information for a sub account",
+            "description": "Retrieve billing information for a sub account under the master account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/accountBilling.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "accountBillingUpdate": {
+            "main": "./lib/actions/accountBillingUpdate.js",
+            "title": "Update billing information for a sub account",
+            "description": "Update billing information for a sub account under the master account <aside>Only for the sub account which is a paid account and paid by master account</aside>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/accountBillingUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "accountOptionsUpdate": {
+            "main": "./lib/actions/accountOptionsUpdate.js",
+            "title": "Update a sub account's options",
+            "description": "Update a sub account's options under the master account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/accountOptionsUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "accountPlans": {
+            "main": "./lib/actions/accountPlans.js",
+            "title": "Retrieve plan information for a sub account",
+            "description": "Retrieve plan information for a sub account under the master account  <aside>Only for the sub account which is paid by master account</aside>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/accountPlans.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "accountPlanCreate": {
+            "main": "./lib/actions/accountPlanCreate.js",
+            "title": "Subscribe plans for a sub account",
+            "description": "Subscribe plans for a sub account of the master account <aside>Can only subscribe plans for the sub account which is a free account and paid by master account</aside>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/accountPlanCreate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "accountPlanAddonCreate": {
+            "main": "./lib/actions/accountPlanAddonCreate.js",
+            "title": "Add an additional plan for sub account",
+            "description": "Add an additional plan for sub account <aside>Can only add an Additional plan for the sub account which is a paid account and paid by master account</aside>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/accountPlanAddonCreate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "accountPlanAddonUpdate": {
+            "main": "./lib/actions/accountPlanAddonUpdate.js",
+            "title": "Update an additional plan for sub account",
+            "description": "Update an additional plan for sub account<aside>Can only update an Additional plan for the sub account which is a paid account and paid by master account</aside>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/accountPlanAddonUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "accountPlanBaseUpdate": {
+            "main": "./lib/actions/accountPlanBaseUpdate.js",
+            "title": "Update a base plan for a sub account",
+            "description": "Update a base plan for a sub account <aside>Can only update a base plan for the sub account which is a paid account and paid by master account</aside>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/accountPlanBaseUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "accountSettings": {
+            "main": "./lib/actions/accountSettings.js",
+            "title": "Retrieve a sub account's settings",
+            "description": "Retrieve a sub account's settings under the master account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/accountSettings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "accountSettingsUpdate": {
+            "main": "./lib/actions/accountSettingsUpdate.js",
+            "title": "Update a sub account's settings",
+            "description": "Update a sub account's settings under the master account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/accountSettingsUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "groups": {
+            "main": "./lib/actions/groups.js",
+            "title": "List groups",
+            "description": "List groups under your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/groups.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "groupCreate": {
+            "main": "./lib/actions/groupCreate.js",
+            "title": "Create a group",
+            "description": "Create a group under your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/groupCreate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "groupDelete": {
+            "main": "./lib/actions/groupDelete.js",
+            "title": "Delete a group",
+            "description": "Delete a group under your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/groupDelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "group": {
+            "main": "./lib/actions/group.js",
+            "title": "Retrieve a group",
+            "description": "Retrieve a group under your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/group.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "groupUpdate": {
+            "main": "./lib/actions/groupUpdate.js",
+            "title": "Update a group",
+            "description": "Update a group under your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/groupUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "groupMembers": {
+            "main": "./lib/actions/groupMembers.js",
+            "title": "List a group's members",
+            "description": "List a group's members under your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/groupMembers.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "groupMembersCreate": {
+            "main": "./lib/actions/groupMembersCreate.js",
+            "title": "Add group members",
+            "description": "Add members to a group under your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/groupMembersCreate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "groupMembersDelete": {
+            "main": "./lib/actions/groupMembersDelete.js",
+            "title": "Delete a group member",
+            "description": "Delete a member from a group under your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/groupMembersDelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "imGroups": {
+            "main": "./lib/actions/imGroups.js",
+            "title": "List IM Groups",
+            "description": "List IM groups under your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/imGroups.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "imGroupCreate": {
+            "main": "./lib/actions/imGroupCreate.js",
+            "title": "Create an IM Group",
+            "description": "Create a IM Group under your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/imGroupCreate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "imGroupDelete": {
+            "main": "./lib/actions/imGroupDelete.js",
+            "title": "Delete an IM Group",
+            "description": "Delete an IM Group under your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/imGroupDelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "imGroup": {
+            "main": "./lib/actions/imGroup.js",
+            "title": "Retrieve an IM Group",
+            "description": "Retrieve an IM Group under your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/imGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "imGroupUpdate": {
+            "main": "./lib/actions/imGroupUpdate.js",
+            "title": "Update an IM Group",
+            "description": "Update an IM Group under your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/imGroupUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "imGroupMembers": {
+            "main": "./lib/actions/imGroupMembers.js",
+            "title": "List an IM Group's members",
+            "description": "List an IM Group's members under your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/imGroupMembers.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "imGroupMembersCreate": {
+            "main": "./lib/actions/imGroupMembersCreate.js",
+            "title": "Add IM Group members",
+            "description": "Add members to an IM Group under your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/imGroupMembersCreate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "imGroupMembersDelete": {
+            "main": "./lib/actions/imGroupMembersDelete.js",
+            "title": "Delete an IM Group member",
+            "description": "Delete a member from an IM Group under your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/imGroupMembersDelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "meetingDelete": {
+            "main": "./lib/actions/meetingDelete.js",
+            "title": "Delete a meeting",
+            "description": "Delete a meeting",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/meetingDelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "meeting": {
+            "main": "./lib/actions/meeting.js",
+            "title": "Retrieve a meeting",
+            "description": "Retrieve a meeting's details",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/meeting.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "meetingUpdate": {
+            "main": "./lib/actions/meetingUpdate.js",
+            "title": "Update a meeting",
+            "description": "Update a meeting's details",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/meetingUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "recordingDelete": {
+            "main": "./lib/actions/recordingDelete.js",
+            "title": "Delete a meeting's recordings",
+            "description": "Delete a meeting's recordings",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/recordingDelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "recordingGet": {
+            "main": "./lib/actions/recordingGet.js",
+            "title": "Retrieve a meeting's all recordings",
+            "description": "Retrieve a meeting's all recordings",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/recordingGet.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "recordingStatusUpdate": {
+            "main": "./lib/actions/recordingStatusUpdate.js",
+            "title": "Recover a meeting's recordings",
+            "description": "Recover a meeting's recordings",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/recordingStatusUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "recordingDeleteOne": {
+            "main": "./lib/actions/recordingDeleteOne.js",
+            "title": "Delete one meeting recording file",
+            "description": "Delete one meeting recording file",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/recordingDeleteOne.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "recordingStatusUpdateOne": {
+            "main": "./lib/actions/recordingStatusUpdateOne.js",
+            "title": "Recover a meeting one recording",
+            "description": "Recover a meeting one recording",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/recordingStatusUpdateOne.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "meetingRegistrants": {
+            "main": "./lib/actions/meetingRegistrants.js",
+            "title": "List a meeting's registrants",
+            "description": "List registrants of a meeting",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/meetingRegistrants.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "meetingRegistrantCreate": {
+            "main": "./lib/actions/meetingRegistrantCreate.js",
+            "title": "Add a meeting registrant",
+            "description": "Register a participant for a meeting",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/meetingRegistrantCreate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "meetingRegistrantStatus": {
+            "main": "./lib/actions/meetingRegistrantStatus.js",
+            "title": "Update a meeting registrant's status",
+            "description": "Update a meeting registrant's status",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/meetingRegistrantStatus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "meetingStatus": {
+            "main": "./lib/actions/meetingStatus.js",
+            "title": "Update a meeting's status",
+            "description": "Update a meeting's status",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/meetingStatus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "dashboardCRC": {
+            "main": "./lib/actions/dashboardCRC.js",
+            "title": "Retrieve CRC Port Usage",
+            "description": "Get CRC Port usage hour by hour for a specified time period <aside class='notice'>We will report a maximum of one month. For example, if \"from\" is set to \"2017-08-05\" and \"to\" is \"2017-10-10\" we will adjust \"from\" to \"2017-09-10\"</aside>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/dashboardCRC.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "dashboardIM": {
+            "main": "./lib/actions/dashboardIM.js",
+            "title": "Retrieve IM",
+            "description": "Retrieve metrics of Zoom IM",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/dashboardIM.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "dashboardMeetings": {
+            "main": "./lib/actions/dashboardMeetings.js",
+            "title": "List meetings",
+            "description": "List live meetings or past meetings for a specified period",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/dashboardMeetings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "dashboardMeetingDetail": {
+            "main": "./lib/actions/dashboardMeetingDetail.js",
+            "title": "Retrieve meeting detail",
+            "description": "Retrieve live or past meetings detail",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/dashboardMeetingDetail.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "dashboardMeetingParticipants": {
+            "main": "./lib/actions/dashboardMeetingParticipants.js",
+            "title": "Retrieve meeting participants",
+            "description": "Retrieve live or past meetings participants",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/dashboardMeetingParticipants.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "dashboardMeetingParticipantsQOS": {
+            "main": "./lib/actions/dashboardMeetingParticipantsQOS.js",
+            "title": "List meeting participants QOS",
+            "description": "Retrieve list of live or past meetings participants quality of service",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/dashboardMeetingParticipantsQOS.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "dashboardMeetingParticipantShare": {
+            "main": "./lib/actions/dashboardMeetingParticipantShare.js",
+            "title": "Retrieve sharing/recording details of meeting participant",
+            "description": "Retrieve sharing/recording details of live or past meetings participant",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/dashboardMeetingParticipantShare.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "dashboardMeetingParticipantQOS": {
+            "main": "./lib/actions/dashboardMeetingParticipantQOS.js",
+            "title": "Retrieve meeting participant QOS",
+            "description": "Retrieve live or past meetings participant quality of service",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/dashboardMeetingParticipantQOS.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "dashboardWebinars": {
+            "main": "./lib/actions/dashboardWebinars.js",
+            "title": "List webinars",
+            "description": "List live webinars or past webinars for a specified period",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/dashboardWebinars.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "dashboardWebinarDetail": {
+            "main": "./lib/actions/dashboardWebinarDetail.js",
+            "title": "Retrieve webinar detail",
+            "description": "Retrieve live  or past webinars detail",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/dashboardWebinarDetail.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "dashboardWebinarParticipants": {
+            "main": "./lib/actions/dashboardWebinarParticipants.js",
+            "title": "Retrieve webinar participants",
+            "description": "Retrieve live or past webinar participants",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/dashboardWebinarParticipants.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "dashboardWebinarParticipantsQOS": {
+            "main": "./lib/actions/dashboardWebinarParticipantsQOS.js",
+            "title": "List webinar participant QOS",
+            "description": "Retrieve list of live or past webinar participants quality of service",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/dashboardWebinarParticipantsQOS.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "dashboardWebinarParticipantShare": {
+            "main": "./lib/actions/dashboardWebinarParticipantShare.js",
+            "title": "Retrieve sharing/recording details of webinar participant",
+            "description": "Retrieve sharing/recording details of live or past webinar participant",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/dashboardWebinarParticipantShare.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "dashboardWebinarParticipantQOS": {
+            "main": "./lib/actions/dashboardWebinarParticipantQOS.js",
+            "title": "Retrieve webinar participant QOS",
+            "description": "Retrieve live or past webinar participant quality of service",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/dashboardWebinarParticipantQOS.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "dashboardZoomRooms": {
+            "main": "./lib/actions/dashboardZoomRooms.js",
+            "title": "List Zoom Rooms",
+            "description": "List all zoom rooms on account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/dashboardZoomRooms.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "dashboardZoomRoom": {
+            "main": "./lib/actions/dashboardZoomRoom.js",
+            "title": "Retrieve Zoom Room",
+            "description": "Retrieve zoom room on account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/dashboardZoomRoom.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "reportDaily": {
+            "main": "./lib/actions/reportDaily.js",
+            "title": "Retrieve daily report",
+            "description": "Retrieve daily report for one month, can only get daily report for recent 6 months.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/reportDaily.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "reportMeetingDetails": {
+            "main": "./lib/actions/reportMeetingDetails.js",
+            "title": "Retrieve meeting details report",
+            "description": "Retrieve ended meeting details report",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/reportMeetingDetails.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "reportMeetingParticipants": {
+            "main": "./lib/actions/reportMeetingParticipants.js",
+            "title": "Retrieve meeting participants report",
+            "description": "Retrieve ended meeting participants report",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/reportMeetingParticipants.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "reportTelephone": {
+            "main": "./lib/actions/reportTelephone.js",
+            "title": "Retrieve telephone report",
+            "description": "Retrieve telephone report for a specified period <aside>Toll Report API is provided for enabled 'Toll Report' option.</aside>",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/reportTelephone.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "reportUsers": {
+            "main": "./lib/actions/reportUsers.js",
+            "title": "Retrieve hosts report",
+            "description": "Retrieve active or inactive hosts report for a specified period",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/reportUsers.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "reportMeetings": {
+            "main": "./lib/actions/reportMeetings.js",
+            "title": "Retrieve meetings report",
+            "description": "Retrieve ended meetings report for a specified period",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/reportMeetings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "reportWebinarDetails": {
+            "main": "./lib/actions/reportWebinarDetails.js",
+            "title": "Retrieve webinar details report",
+            "description": "Retrieve ended webinar details report",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/reportWebinarDetails.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "reportWebinarParticipants": {
+            "main": "./lib/actions/reportWebinarParticipants.js",
+            "title": "Retrieve webinar participants report",
+            "description": "Retrieve ended webinar participants report",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/reportWebinarParticipants.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "reportWebinarPolls": {
+            "main": "./lib/actions/reportWebinarPolls.js",
+            "title": "Retrieve webinar polls report",
+            "description": "Retrieve ended webinar polls report",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/reportWebinarPolls.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "reportWebinarQA": {
+            "main": "./lib/actions/reportWebinarQA.js",
+            "title": "Retrieve webinar Q&A report",
+            "description": "Retrieve ended webinar Q&A report",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/reportWebinarQA.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "tsp": {
+            "main": "./lib/actions/tsp.js",
+            "title": "List TSP dial-in numbers",
+            "description": "List TSP dial-in numbers under account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/tsp.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "users": {
+            "main": "./lib/actions/users.js",
+            "title": "List Users",
+            "description": "List users on your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/users.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userCreate": {
+            "main": "./lib/actions/userCreate.js",
+            "title": "Create a user",
+            "description": "Create a user on your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userCreate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userEmail": {
+            "main": "./lib/actions/userEmail.js",
+            "title": "Check a user's email",
+            "description": "Check if the user email exists.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userEmail.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userZPK": {
+            "main": "./lib/actions/userZPK.js",
+            "title": "Verify a user's zpk",
+            "description": "Check if the zpk is expired. The zpk is used to authenticate a user.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userZPK.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userDelete": {
+            "main": "./lib/actions/userDelete.js",
+            "title": "Delete a user",
+            "description": "Delete a user on your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userDelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "user": {
+            "main": "./lib/actions/user.js",
+            "title": "Retrieve a user",
+            "description": "Retrieve a user on your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/user.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userUpdate": {
+            "main": "./lib/actions/userUpdate.js",
+            "title": "Update a user",
+            "description": "Update a user on your account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userAssistantsDelete": {
+            "main": "./lib/actions/userAssistantsDelete.js",
+            "title": "Delete a user's assistants",
+            "description": "Delete all of a user'sassitants",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userAssistantsDelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userAssistants": {
+            "main": "./lib/actions/userAssistants.js",
+            "title": "List a user's assistants",
+            "description": "List a user's assistants",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userAssistants.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userAssistantCreate": {
+            "main": "./lib/actions/userAssistantCreate.js",
+            "title": "Add assistants",
+            "description": "Add assistants to a user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userAssistantCreate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userAssistantDelete": {
+            "main": "./lib/actions/userAssistantDelete.js",
+            "title": "Delete a user's assistant",
+            "description": "Delete one of a user's assistants",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userAssistantDelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "meetings": {
+            "main": "./lib/actions/meetings.js",
+            "title": "List meetings",
+            "description": "List meetings for a user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/meetings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "meetingCreate": {
+            "main": "./lib/actions/meetingCreate.js",
+            "title": "Create a meeting",
+            "description": "Create a meeting for a user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/meetingCreate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userPassword": {
+            "main": "./lib/actions/userPassword.js",
+            "title": "Update a user's password",
+            "description": "Update a user's password",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userPassword.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userPicture": {
+            "main": "./lib/actions/userPicture.js",
+            "title": "Upload a user's picture",
+            "description": "Upload a user's profile picture",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userPicture.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "recordingsList": {
+            "main": "./lib/actions/recordingsList.js",
+            "title": "List all the recordings",
+            "description": "List all the recordings",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/recordingsList.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userSettings": {
+            "main": "./lib/actions/userSettings.js",
+            "title": "Retrieve a user's settings",
+            "description": "Retrieve a user's settings",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userSettings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userSettingsUpdate": {
+            "main": "./lib/actions/userSettingsUpdate.js",
+            "title": "Update a user's settings",
+            "description": "Update a user's settings",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userSettingsUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userStatus": {
+            "main": "./lib/actions/userStatus.js",
+            "title": "Update a user's status",
+            "description": "Update a user's status",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userStatus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userSSOTokenDelete": {
+            "main": "./lib/actions/userSSOTokenDelete.js",
+            "title": "Revoke a user's SSO token",
+            "description": "Revoke a user's SSO token",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userSSOTokenDelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userToken": {
+            "main": "./lib/actions/userToken.js",
+            "title": "Retrieve a user's token",
+            "description": "Retrieve a user's token",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userToken.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userTSPs": {
+            "main": "./lib/actions/userTSPs.js",
+            "title": "List user's TSP accounts",
+            "description": "List user's TSP accounts",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userTSPs.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userTSPCreate": {
+            "main": "./lib/actions/userTSPCreate.js",
+            "title": "Add a user's TSP account",
+            "description": "Add a user's TSP account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userTSPCreate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userTSPDelete": {
+            "main": "./lib/actions/userTSPDelete.js",
+            "title": "Delete a user's TSP account",
+            "description": "Delete a user's TSP account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userTSPDelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userTSP": {
+            "main": "./lib/actions/userTSP.js",
+            "title": "Retrieve a user's TSP account",
+            "description": "Retrieve a user's TSP account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userTSP.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "userTSPUpdate": {
+            "main": "./lib/actions/userTSPUpdate.js",
+            "title": "Update a TSP account",
+            "description": "Update a user's TSP account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/userTSPUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webinars": {
+            "main": "./lib/actions/webinars.js",
+            "title": "List webinars",
+            "description": "List webinars for a user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webinars.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webinarCreate": {
+            "main": "./lib/actions/webinarCreate.js",
+            "title": "Create a webinar",
+            "description": "Create a webinar for a user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webinarCreate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webhooks": {
+            "main": "./lib/actions/webhooks.js",
+            "title": "List webhooks",
+            "description": "List webhooks for a account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webhooks.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webhookCreate": {
+            "main": "./lib/actions/webhookCreate.js",
+            "title": "Create a webhook",
+            "description": "Create a webhook for a account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webhookCreate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webhookSwitch": {
+            "main": "./lib/actions/webhookSwitch.js",
+            "title": "Switch webhook version",
+            "description": "Switch webhook version",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webhookSwitch.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webhookDelete": {
+            "main": "./lib/actions/webhookDelete.js",
+            "title": "Delete a webhook",
+            "description": "Delete a webhook",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webhookDelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webhook": {
+            "main": "./lib/actions/webhook.js",
+            "title": "Retrieve a webhook",
+            "description": "Retrieve a webhook",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webhook.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webhookUpdate": {
+            "main": "./lib/actions/webhookUpdate.js",
+            "title": "Update a webhook",
+            "description": "Update a webhook",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webhookUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webinarDelete": {
+            "main": "./lib/actions/webinarDelete.js",
+            "title": "Delete a webinar",
+            "description": "Delete a webinar",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webinarDelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webinar": {
+            "main": "./lib/actions/webinar.js",
+            "title": "Retrieve a webinar",
+            "description": "Retrieve a webinar",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webinar.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webinarUpdate": {
+            "main": "./lib/actions/webinarUpdate.js",
+            "title": "Update a webinar",
+            "description": "Update a webinar",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webinarUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webinarPanelistsDelete": {
+            "main": "./lib/actions/webinarPanelistsDelete.js",
+            "title": "Remove a webinar's panelists",
+            "description": "Remove all panelists from a webinar",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webinarPanelistsDelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webinarPanelists": {
+            "main": "./lib/actions/webinarPanelists.js",
+            "title": "List a webinar's panelists",
+            "description": "List panelists for a webinar",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webinarPanelists.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webinarPanelistCreate": {
+            "main": "./lib/actions/webinarPanelistCreate.js",
+            "title": "Add a webinar panelist",
+            "description": "Add panelist to webinar",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webinarPanelistCreate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webinarPanelistDelete": {
+            "main": "./lib/actions/webinarPanelistDelete.js",
+            "title": "Remove a webinar panelist",
+            "description": "Remove a panelist from a webinar",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webinarPanelistDelete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webinarRegistrants": {
+            "main": "./lib/actions/webinarRegistrants.js",
+            "title": "List a webinar's registrants",
+            "description": "List registrants for a webinar",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webinarRegistrants.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webinarRegistrantCreate": {
+            "main": "./lib/actions/webinarRegistrantCreate.js",
+            "title": "Add a webinar registrant",
+            "description": "Add a registrant for a webinar",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webinarRegistrantCreate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webinarRegistrantStatus": {
+            "main": "./lib/actions/webinarRegistrantStatus.js",
+            "title": "Update a webinar registrant's status",
+            "description": "Update a webinar registrant's status",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webinarRegistrantStatus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "webinarStatus": {
+            "main": "./lib/actions/webinarStatus.js",
+            "title": "Update a webinar's status",
+            "description": "Update a webinar's status",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                },
+                "body_content_type": {
+                    "viewClass": "SelectView",
+                    "label": "Body Content-Type",
+                    "required": true,
+                    "prompt": "Choose a body Content-Type.",
+                    "model": {
+                        "application/json": "application/json",
+                        "multipart/form-data": "multipart/form-data"
+                    }
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/webinarStatus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

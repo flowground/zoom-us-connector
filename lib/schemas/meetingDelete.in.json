@@ -1,0 +1,12 @@
+{
+    "type": "object",
+    "properties": {
+        "meetingId": {
+            "required": true,
+            "type": "integer"
+        },
+        "occurrence_id": {
+            "type": "string"
+        }
+    }
+}

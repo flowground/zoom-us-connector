@@ -1,0 +1,35 @@
+{
+    "type": "object",
+    "properties": {
+        "userId": {
+            "required": true,
+            "type": "string"
+        },
+        "from": {
+            "required": true,
+            "type": "string",
+            "format": "date"
+        },
+        "to": {
+            "required": true,
+            "type": "string",
+            "format": "date"
+        },
+        "page_size": {
+            "type": "integer",
+            "maximum": 300,
+            "default": 30
+        },
+        "next_page_token": {
+            "type": "string"
+        },
+        "mc": {
+            "type": "string",
+            "default": "false"
+        },
+        "trash": {
+            "type": "boolean",
+            "default": false
+        }
+    }
+}

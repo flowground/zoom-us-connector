@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "meetingId": {
+            "required": true,
+            "type": "integer"
+        },
+        "recordingId": {
+            "required": true,
+            "type": "string"
+        },
+        "action": {
+            "type": "string",
+            "enum": [
+                "trash",
+                "delete"
+            ],
+            "default": "trash"
+        }
+    }
+}

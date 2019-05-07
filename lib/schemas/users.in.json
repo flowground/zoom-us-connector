@@ -1,0 +1,23 @@
+{
+    "type": "object",
+    "properties": {
+        "status": {
+            "type": "string",
+            "enum": [
+                "active",
+                "inactive",
+                "pending"
+            ],
+            "default": "active"
+        },
+        "page_size": {
+            "type": "integer",
+            "maximum": 300,
+            "default": 30
+        },
+        "page_number": {
+            "type": "integer",
+            "default": 1
+        }
+    }
+}

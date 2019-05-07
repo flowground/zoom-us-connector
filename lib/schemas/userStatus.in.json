@@ -1,0 +1,30 @@
+{
+    "type": "object",
+    "properties": {
+        "userId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "The action",
+            "properties": {
+                "action": {
+                    "description": "The action type",
+                    "enum": [
+                        "activate",
+                        "deactivate"
+                    ],
+                    "type": "string",
+                    "x-enum-descriptions": [
+                        "set users status to active",
+                        "set users status to inactive"
+                    ]
+                }
+            },
+            "required": [
+                "action"
+            ],
+            "type": "object"
+        }
+    }
+}

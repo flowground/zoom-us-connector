@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "properties": {
+                "name": {
+                    "description": "Group name.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

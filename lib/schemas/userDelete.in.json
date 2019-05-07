@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "userId": {
+            "required": true,
+            "type": "string"
+        },
+        "action": {
+            "type": "string",
+            "enum": [
+                "disassociate",
+                "delete"
+            ],
+            "default": "disassociate"
+        }
+    }
+}

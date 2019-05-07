@@ -1,0 +1,13 @@
+{
+    "type": "object",
+    "properties": {
+        "webinarId": {
+            "required": true,
+            "type": "integer"
+        },
+        "panelistId": {
+            "required": true,
+            "type": "integer"
+        }
+    }
+}

@@ -1,0 +1,193 @@
+{
+    "type": "object",
+    "properties": {
+        "accountId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "properties": {
+                        "contact": {
+                            "description": "Billing Contact object",
+                            "properties": {
+                                "address": {
+                                    "description": "Billing Contact's address.",
+                                    "type": "string"
+                                },
+                                "apt": {
+                                    "description": "Billing Contact's apartment/suite.",
+                                    "type": "string"
+                                },
+                                "city": {
+                                    "description": "Billing Contact's city.",
+                                    "type": "string"
+                                },
+                                "country": {
+                                    "description": "Billing Contact's country.",
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "description": "Billing Contact's email address.",
+                                    "type": "string"
+                                },
+                                "first_name": {
+                                    "description": "Billing Contact's first name.",
+                                    "type": "string"
+                                },
+                                "last_name": {
+                                    "description": "Billing Contact's last name.",
+                                    "type": "string"
+                                },
+                                "phone_number": {
+                                    "description": "Billing Contact's phone number.",
+                                    "type": "string"
+                                },
+                                "state": {
+                                    "description": "Billing Contact's state.",
+                                    "type": "string"
+                                },
+                                "zip": {
+                                    "description": "Billing Contact's zip/postal code.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "first_name",
+                                "last_name",
+                                "email",
+                                "phone_number",
+                                "address",
+                                "city",
+                                "state",
+                                "zip",
+                                "country"
+                            ],
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                },
+                {
+                    "description": "Account Plans object",
+                    "properties": {
+                        "plan_audio": {
+                            "description": "Additional Audio Conferencing Plan type",
+                            "properties": {
+                                "callout_countries": {
+                                    "description": "Call-out countries, multiple value separated by comma",
+                                    "type": "string"
+                                },
+                                "ddi_numbers": {
+                                    "description": "Dedicated Dial-In Numbers",
+                                    "type": "integer"
+                                },
+                                "premium_countries": {
+                                    "description": "Premium countries, multiple value separated by comma",
+                                    "type": "string"
+                                },
+                                "tollfree_countries": {
+                                    "description": "Toll-free countries, multiple value separated by comma",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "Additional Audio Conferencing Plan type",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "plan_base": {
+                            "description": "Account base plan object",
+                            "properties": {
+                                "hosts": {
+                                    "description": "Account base plan number of hosts. For a Pro Plan, please select a value between 1 and 9. For a Business Plan, please select a value between 10 and 49. For a Education Plan, please select a value between 20 and 149. For a Free Trial Plan, please select a value between 1 and 9999.",
+                                    "type": "integer"
+                                },
+                                "type": {
+                                    "description": "Account base plan type",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "type",
+                                "hosts"
+                            ],
+                            "type": "object"
+                        },
+                        "plan_large_meeting": {
+                            "description": "Additional Large Meeting Plans",
+                            "items": {
+                                "description": "Account plan object",
+                                "properties": {
+                                    "hosts": {
+                                        "description": "Account plan number of hosts",
+                                        "type": "integer"
+                                    },
+                                    "type": {
+                                        "description": "Account plan type",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "plan_recording": {
+                            "description": "Additional Cloud Recording Plan",
+                            "type": "string"
+                        },
+                        "plan_room_connector": {
+                            "description": "Account plan object",
+                            "properties": {
+                                "hosts": {
+                                    "description": "Account plan number of hosts",
+                                    "type": "integer"
+                                },
+                                "type": {
+                                    "description": "Account plan type",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "plan_webinar": {
+                            "description": "Additional Webinar Plans",
+                            "items": {
+                                "description": "Account plan object",
+                                "properties": {
+                                    "hosts": {
+                                        "description": "Account plan number of hosts",
+                                        "type": "integer"
+                                    },
+                                    "type": {
+                                        "description": "Account plan type",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "plan_zoom_rooms": {
+                            "description": "Account plan object",
+                            "properties": {
+                                "hosts": {
+                                    "description": "Account plan number of hosts",
+                                    "type": "integer"
+                                },
+                                "type": {
+                                    "description": "Account plan type",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                }
+            ]
+        }
+    }
+}

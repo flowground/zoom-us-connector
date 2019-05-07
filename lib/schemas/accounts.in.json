@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "properties": {
+        "page_size": {
+            "type": "integer",
+            "maximum": 300,
+            "default": 30
+        },
+        "page_number": {
+            "type": "integer",
+            "default": 1
+        }
+    }
+}

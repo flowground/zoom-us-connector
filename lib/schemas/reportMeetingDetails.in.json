@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "meetingId": {
+            "required": true,
+            "type": "integer"
+        }
+    }
+}

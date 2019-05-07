@@ -1,0 +1,31 @@
+{
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string",
+            "enum": [
+                "active",
+                "inactive"
+            ]
+        },
+        "from": {
+            "required": true,
+            "type": "string",
+            "format": "date"
+        },
+        "to": {
+            "required": true,
+            "type": "string",
+            "format": "date"
+        },
+        "page_size": {
+            "type": "integer",
+            "maximum": 300,
+            "default": 30
+        },
+        "page_number": {
+            "type": "integer",
+            "default": 1
+        }
+    }
+}

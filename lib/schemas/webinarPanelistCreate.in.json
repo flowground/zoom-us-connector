@@ -1,0 +1,37 @@
+{
+    "type": "object",
+    "properties": {
+        "webinarId": {
+            "required": true,
+            "type": "integer"
+        },
+        "requestBody": {
+            "description": "Webinar panelist",
+            "properties": {
+                "panelists": {
+                    "description": "List of Panelist objects.",
+                    "items": {
+                        "allOf": [
+                            {
+                                "description": "Panelist base object",
+                                "properties": {
+                                    "email": {
+                                        "description": "Panelist's email",
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "description": "Panelist's full name",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

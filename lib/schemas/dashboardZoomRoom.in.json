@@ -1,0 +1,28 @@
+{
+    "type": "object",
+    "properties": {
+        "zoomroomId": {
+            "required": true,
+            "type": "integer"
+        },
+        "from": {
+            "required": true,
+            "type": "string",
+            "format": "date"
+        },
+        "to": {
+            "required": true,
+            "type": "string",
+            "format": "date"
+        },
+        "page_size": {
+            "type": "integer",
+            "maximum": 300,
+            "default": 30
+        },
+        "page_number": {
+            "type": "integer",
+            "default": 1
+        }
+    }
+}

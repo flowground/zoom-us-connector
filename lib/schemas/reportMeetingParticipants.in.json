@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "meetingId": {
+            "required": true,
+            "type": "integer"
+        },
+        "page_size": {
+            "type": "integer",
+            "maximum": 300,
+            "default": 30
+        },
+        "next_page_token": {
+            "type": "string"
+        }
+    }
+}

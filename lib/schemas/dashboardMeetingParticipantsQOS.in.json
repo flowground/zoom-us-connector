@@ -1,0 +1,25 @@
+{
+    "type": "object",
+    "properties": {
+        "meetingId": {
+            "required": true,
+            "type": "integer"
+        },
+        "type": {
+            "type": "string",
+            "enum": [
+                "past",
+                "live"
+            ],
+            "default": "live"
+        },
+        "page_size": {
+            "type": "integer",
+            "maximum": 10,
+            "default": 1
+        },
+        "next_page_token": {
+            "type": "string"
+        }
+    }
+}

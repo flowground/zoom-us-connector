@@ -1,0 +1,45 @@
+{
+    "type": "object",
+    "properties": {
+        "userId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "TSP Account object",
+            "properties": {
+                "conference_code": {
+                    "description": "Conference code, numeric value, length is less than 16.",
+                    "type": "string"
+                },
+                "dial_in_numbers": {
+                    "description": "Dial In Numbers object",
+                    "properties": {
+                        "code": {
+                            "description": "Country Code",
+                            "type": "string"
+                        },
+                        "number": {
+                            "description": "Dial-in number, length is less than 16.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "code",
+                        "number"
+                    ],
+                    "type": "object"
+                },
+                "leader_pin": {
+                    "description": "Leader PIN, numeric value, length is less than 16.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "conference_code",
+                "leader_pin"
+            ],
+            "type": "object"
+        }
+    }
+}

@@ -1,0 +1,70 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "The account object represents an account on zoom. The person who created the account, or who the account was created for, is referred to as the Account owner. You can read more about the Zoom account structure <a href='https://developer.zoom.us/blog/a-brief-look-at-zoom-account-structures/' target='_blank'>here</a>.",
+            "properties": {
+                "email": {
+                    "description": "User's email address.",
+                    "type": "string"
+                },
+                "first_name": {
+                    "description": "User's first name.",
+                    "type": "string"
+                },
+                "last_name": {
+                    "description": "User's last name.",
+                    "type": "string"
+                },
+                "options": {
+                    "description": "Account options object",
+                    "properties": {
+                        "meeting_connectors": {
+                            "description": "Meeting Connector, multiple value separated by comma.",
+                            "type": "string"
+                        },
+                        "pay_mode": {
+                            "default": "master",
+                            "description": "Payee",
+                            "enum": [
+                                "master",
+                                "sub"
+                            ],
+                            "type": "string",
+                            "x-enum-descriptions": [
+                                "Master Account holder pays",
+                                "Sub Account holders pays"
+                            ]
+                        },
+                        "room_connectors": {
+                            "description": "Virtual Room Connector, multiple value separated by comma.",
+                            "type": "string"
+                        },
+                        "share_mc": {
+                            "default": false,
+                            "description": "Enable Share Meeting Connector.",
+                            "type": "boolean"
+                        },
+                        "share_rc": {
+                            "default": false,
+                            "description": "Enable Share Virtual Room Connector.",
+                            "type": "boolean"
+                        }
+                    },
+                    "type": "object"
+                },
+                "password": {
+                    "description": "User's password.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "email",
+                "first_name",
+                "last_name",
+                "password"
+            ],
+            "type": "object"
+        }
+    }
+}

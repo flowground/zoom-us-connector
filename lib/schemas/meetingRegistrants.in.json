@@ -1,0 +1,30 @@
+{
+    "type": "object",
+    "properties": {
+        "meetingId": {
+            "required": true,
+            "type": "integer"
+        },
+        "occurrence_id": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "pending",
+                "approved",
+                "denied"
+            ],
+            "default": "approved"
+        },
+        "page_size": {
+            "type": "integer",
+            "maximum": 300,
+            "default": 30
+        },
+        "page_number": {
+            "type": "integer",
+            "default": 1
+        }
+    }
+}

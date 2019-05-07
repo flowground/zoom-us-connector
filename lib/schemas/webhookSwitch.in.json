@@ -1,0 +1,24 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "properties": {
+                "version": {
+                    "enum": [
+                        "v1",
+                        "v2"
+                    ],
+                    "type": "string",
+                    "x-enum-descriptions": [
+                        "Version 1",
+                        "Version 2"
+                    ]
+                }
+            },
+            "required": [
+                "version"
+            ],
+            "type": "object"
+        }
+    }
+}

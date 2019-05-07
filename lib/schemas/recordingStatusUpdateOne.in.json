@@ -1,0 +1,27 @@
+{
+    "type": "object",
+    "properties": {
+        "meetingId": {
+            "required": true,
+            "type": "integer"
+        },
+        "recordingId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "action": {
+                    "enum": [
+                        "recover"
+                    ],
+                    "type": "string",
+                    "x-enum-descriptions": [
+                        "recover meeting recording"
+                    ]
+                }
+            },
+            "type": "object"
+        }
+    }
+}

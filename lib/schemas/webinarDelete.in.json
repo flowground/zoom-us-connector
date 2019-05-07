@@ -1,0 +1,12 @@
+{
+    "type": "object",
+    "properties": {
+        "webinarId": {
+            "required": true,
+            "type": "integer"
+        },
+        "occurrence_id": {
+            "type": "string"
+        }
+    }
+}

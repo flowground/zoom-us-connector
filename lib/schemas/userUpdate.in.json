@@ -1,0 +1,62 @@
+{
+    "type": "object",
+    "properties": {
+        "userId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "The user update object represents a User on Zoom.",
+            "properties": {
+                "cms_user_id": {
+                    "description": "Kaltura User Id.",
+                    "type": "string"
+                },
+                "dept": {
+                    "description": "Department for user profile, use for report.",
+                    "type": "string"
+                },
+                "first_name": {
+                    "description": "User's first name. Cannot contain more than 5 Chinese words.",
+                    "type": "string"
+                },
+                "host_key": {
+                    "description": "Host Key, should be 6-digit number.",
+                    "type": "string"
+                },
+                "last_name": {
+                    "description": "User's last name. Cannot contain more than 5 Chinese words.",
+                    "type": "string"
+                },
+                "pmi": {
+                    "description": "Personal Meeting ID,length must be 10.",
+                    "type": "string"
+                },
+                "timezone": {
+                    "description": "The time zone id for user profile. For this parameter value please refer to the id value in [timezone](#timezones) list.",
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "User's type",
+                    "enum": [
+                        1,
+                        2,
+                        3
+                    ],
+                    "type": "integer",
+                    "x-enum-descriptions": [
+                        "basic",
+                        "pro",
+                        "corp"
+                    ]
+                },
+                "vanity_name": {
+                    "description": "Personal meeting room name.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "type": "object",
+    "properties": {
+        "meetingId": {
+            "required": true,
+            "type": "integer"
+        },
+        "occurrence_id": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Registrant Status",
+            "properties": {
+                "action": {
+                    "enum": [
+                        "approve",
+                        "cancel",
+                        "deny"
+                    ],
+                    "type": "string",
+                    "x-enum-descriptions": [
+                        "Approve registrant",
+                        "Cancel registrant",
+                        "Deny registrant"
+                    ]
+                },
+                "registrants": {
+                    "description": "List of registrants",
+                    "items": {
+                        "properties": {
+                            "email": {
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "maximum": 30,
+                    "type": "array"
+                }
+            },
+            "required": [
+                "action"
+            ],
+            "type": "object"
+        }
+    }
+}

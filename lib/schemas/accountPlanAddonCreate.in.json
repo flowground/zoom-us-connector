@@ -1,0 +1,27 @@
+{
+    "type": "object",
+    "properties": {
+        "accountId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Account plan object",
+            "properties": {
+                "hosts": {
+                    "description": "Account plan number of hosts.",
+                    "type": "integer"
+                },
+                "type": {
+                    "description": "Account <a href=\"#plans\">plan type</a>",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "hosts"
+            ],
+            "type": "object"
+        }
+    }
+}

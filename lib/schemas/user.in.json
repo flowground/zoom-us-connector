@@ -1,0 +1,19 @@
+{
+    "type": "object",
+    "properties": {
+        "userId": {
+            "required": true,
+            "type": "string"
+        },
+        "login_type": {
+            "type": "string",
+            "enum": [
+                0,
+                1,
+                99,
+                100,
+                101
+            ]
+        }
+    }
+}

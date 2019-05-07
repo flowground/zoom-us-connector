@@ -1,0 +1,32 @@
+{
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string",
+            "enum": [
+                "past",
+                "pastOne",
+                "live"
+            ],
+            "default": "live"
+        },
+        "from": {
+            "required": true,
+            "type": "string",
+            "format": "date"
+        },
+        "to": {
+            "required": true,
+            "type": "string",
+            "format": "date"
+        },
+        "page_size": {
+            "type": "integer",
+            "maximum": 300,
+            "default": 30
+        },
+        "next_page_token": {
+            "type": "string"
+        }
+    }
+}

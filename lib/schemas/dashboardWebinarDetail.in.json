@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "webinarId": {
+            "required": true,
+            "type": "integer"
+        },
+        "type": {
+            "type": "string",
+            "enum": [
+                "past",
+                "live"
+            ],
+            "default": "live"
+        }
+    }
+}

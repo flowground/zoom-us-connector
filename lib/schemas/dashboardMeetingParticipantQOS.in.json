@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "meetingId": {
+            "required": true,
+            "type": "integer"
+        },
+        "participantId": {
+            "required": true,
+            "type": "string"
+        },
+        "type": {
+            "type": "string",
+            "enum": [
+                "past",
+                "live"
+            ],
+            "default": "live"
+        }
+    }
+}

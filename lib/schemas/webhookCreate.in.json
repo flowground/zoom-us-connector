@@ -1,0 +1,57 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "Webhook base object, only available for version 2 webhook",
+            "properties": {
+                "auth_password": {
+                    "description": "Webhook auth password.",
+                    "maxLength": 64,
+                    "type": "string"
+                },
+                "auth_user": {
+                    "description": "Webhook auth user name.",
+                    "maxLength": 128,
+                    "type": "string"
+                },
+                "events": {
+                    "description": "List of events objects.",
+                    "enum": [
+                        "meeting_started",
+                        "meeting_ended",
+                        "meeting_jbh",
+                        "meeting_join",
+                        "recording_completed",
+                        "participant_joined",
+                        "participant_left"
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array",
+                    "x-enum-descriptions": [
+                        "The meeting has started.",
+                        "The meeting has ended.",
+                        "Attendee has joined a meeting before the host.",
+                        "Host hasn’t launched the meeting, attendee is waiting.",
+                        "All the Cloud Recordings have completed processing and is available.",
+                        "Participant has joined the meeting.",
+                        "Participant has leaved the meeting."
+                    ]
+                },
+                "url": {
+                    "description": "Webhook endpoint",
+                    "maxLength": 256,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "url",
+                "auth_user",
+                "auth_password",
+                "events"
+            ],
+            "type": "object"
+        }
+    }
+}

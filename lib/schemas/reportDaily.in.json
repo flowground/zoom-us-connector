@@ -1,0 +1,11 @@
+{
+    "type": "object",
+    "properties": {
+        "year": {
+            "type": "integer"
+        },
+        "month": {
+            "type": "integer"
+        }
+    }
+}

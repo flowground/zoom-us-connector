@@ -1,0 +1,34 @@
+{
+    "type": "object",
+    "properties": {
+        "userId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "List of User's assistants",
+            "properties": {
+                "assistants": {
+                    "description": "List of User's assistants.",
+                    "items": {
+                        "properties": {
+                            "email": {
+                                "description": "User email address. Must have id or email, if given id, the email is ignored.",
+                                "type": "string"
+                            },
+                            "id": {
+                                "description": "User ID",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "maximum": 30,
+                    "type": "array"
+                }
+            },
+            "title": "User assistants List",
+            "type": "object"
+        }
+    }
+}

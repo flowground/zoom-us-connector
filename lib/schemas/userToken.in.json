@@ -1,0 +1,16 @@
+{
+    "type": "object",
+    "properties": {
+        "userId": {
+            "required": true,
+            "type": "string"
+        },
+        "type": {
+            "type": "string",
+            "enum": [
+                "token",
+                "zpk"
+            ]
+        }
+    }
+}

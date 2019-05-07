@@ -1,0 +1,281 @@
+{
+    "type": "object",
+    "properties": {
+        "webinarId": {
+            "required": true,
+            "type": "integer"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Base webinar object for sessions",
+                    "properties": {
+                        "agenda": {
+                            "description": "Webinar description",
+                            "type": "string"
+                        },
+                        "duration": {
+                            "description": "Webinar duration (minutes). Used for scheduled webinar only.",
+                            "type": "integer"
+                        },
+                        "password": {
+                            "description": "Webinar password. Password may only contain the following characters: [a-z A-Z 0-9 @ - _ *]. Max of 10 characters.",
+                            "type": "string"
+                        },
+                        "recurrence": {
+                            "description": "Recurrence object",
+                            "properties": {
+                                "end_date_time": {
+                                    "description": "Recurrence Meeting End Date. Should be UTC time, such as 2017-11-25T12:00:00Z.",
+                                    "format": "date-time",
+                                    "type": "string"
+                                },
+                                "end_times": {
+                                    "default": 1,
+                                    "description": "Recurrence Meeting End occurrences times",
+                                    "maximum": 50,
+                                    "type": "integer"
+                                },
+                                "monthly_day": {
+                                    "description": "Recurrence Meeting Occurs on a month day. The value range is from 1 to 31",
+                                    "type": "integer"
+                                },
+                                "monthly_week": {
+                                    "description": "Recurrence Meeting Occurs on the week of a month.",
+                                    "enum": [
+                                        -1,
+                                        1,
+                                        2,
+                                        3,
+                                        4
+                                    ],
+                                    "type": "integer",
+                                    "x-enum-descriptions": [
+                                        "Last week",
+                                        "First week",
+                                        "Second week",
+                                        "Third week",
+                                        "Fourth week"
+                                    ]
+                                },
+                                "monthly_week_day": {
+                                    "description": "Recurrence Meeting Occurs on the week day of a month",
+                                    "enum": [
+                                        1,
+                                        2,
+                                        3,
+                                        4,
+                                        5,
+                                        6,
+                                        7
+                                    ],
+                                    "type": "integer",
+                                    "x-enum-descriptions": [
+                                        "Sunday",
+                                        "Monday",
+                                        "Tuesday",
+                                        "Wednesday",
+                                        "Thursday",
+                                        "Friday",
+                                        "Saturday"
+                                    ]
+                                },
+                                "repeat_interval": {
+                                    "description": "Recurrence meeting repeat interval. For a Daily Meeting, max of 90. For a Weekly Meeting, max of 12. For a Monthly Meeting, max of 3.",
+                                    "type": "integer"
+                                },
+                                "type": {
+                                    "description": "Recurrence meeting type",
+                                    "enum": [
+                                        1,
+                                        2,
+                                        3
+                                    ],
+                                    "type": "integer",
+                                    "x-enum-descriptions": [
+                                        "Daily",
+                                        "Weekly",
+                                        "Monthly"
+                                    ]
+                                },
+                                "weekly_days": {
+                                    "description": "Recurrence Meeting Occurs on week days, multiple value separated by comma",
+                                    "enum": [
+                                        1,
+                                        2,
+                                        3,
+                                        4,
+                                        5,
+                                        6,
+                                        7
+                                    ],
+                                    "type": "integer",
+                                    "x-enum-descriptions": [
+                                        "Sunday",
+                                        "Monday",
+                                        "Tuesday",
+                                        "Wednesday",
+                                        "Thursday",
+                                        "Friday",
+                                        "Saturday"
+                                    ]
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "settings": {
+                            "allOf": [
+                                {
+                                    "description": "Webinar Settings",
+                                    "properties": {
+                                        "allow_multiple_devices": {
+                                            "description": "Allow attendees to join from multiple devices.",
+                                            "type": "boolean"
+                                        },
+                                        "alternative_hosts": {
+                                            "description": "Alternative hosts emails or IDs. Multiple value separated by comma.",
+                                            "type": "string"
+                                        },
+                                        "approval_type": {
+                                            "default": 2,
+                                            "enum": [
+                                                0,
+                                                1,
+                                                2
+                                            ],
+                                            "type": "integer",
+                                            "x-enum-descriptions": [
+                                                "Automatically Approve",
+                                                "Manually Approve",
+                                                "No Registration Required"
+                                            ]
+                                        },
+                                        "audio": {
+                                            "default": "both",
+                                            "description": "Meeting audio options",
+                                            "enum": [
+                                                "both",
+                                                "telephony",
+                                                "voip"
+                                            ],
+                                            "type": "string",
+                                            "x-enum-descriptions": [
+                                                "Both Telephony and VoIP",
+                                                "Telephony only",
+                                                "VoIP only"
+                                            ]
+                                        },
+                                        "auto_recording": {
+                                            "default": "none",
+                                            "enum": [
+                                                "local",
+                                                "cloud",
+                                                "none"
+                                            ],
+                                            "type": "string",
+                                            "x-enum-descriptions": [
+                                                "Record to local device",
+                                                "Record to cloud",
+                                                "No Recording"
+                                            ]
+                                        },
+                                        "close_registration": {
+                                            "description": "Close registration after event date.",
+                                            "type": "boolean"
+                                        },
+                                        "enforce_login": {
+                                            "description": "Only signed-in users can join this meeting",
+                                            "type": "boolean"
+                                        },
+                                        "enforce_login_domains": {
+                                            "description": "Only signed-in users with specified domains can join meetings",
+                                            "type": "string"
+                                        },
+                                        "hd_video": {
+                                            "default": false,
+                                            "description": "Default to HD Video",
+                                            "type": "boolean"
+                                        },
+                                        "host_video": {
+                                            "description": "Start video when host join webinar",
+                                            "type": "boolean"
+                                        },
+                                        "panelists_video": {
+                                            "description": "Start video when panelists join webinar",
+                                            "type": "boolean"
+                                        },
+                                        "practice_session": {
+                                            "default": false,
+                                            "description": "Enable Practice Session",
+                                            "type": "boolean"
+                                        },
+                                        "registration_type": {
+                                            "default": 1,
+                                            "description": "Registration type. Used for recurring webinar with fixed time only.",
+                                            "enum": [
+                                                1,
+                                                2,
+                                                3
+                                            ],
+                                            "type": "integer",
+                                            "x-enum-descriptions": [
+                                                "Attendees register once and can attend any of the occurrences",
+                                                "Attendees need to register for each occurrence to attend",
+                                                "Attendees register once and can choose one or more occurrences to attend"
+                                            ]
+                                        },
+                                        "show_share_button": {
+                                            "description": "Show social share buttons on registration page.",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "properties": {
+                                        "registrants_confirmation_email": {
+                                            "description": "Send confirmation Email to Registrants",
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ]
+                        },
+                        "start_time": {
+                            "description": "Webinar start time, in the format \"yyyy-MM-dd'T'HH:mm:ss'Z'\", should be GMT time. In the format \"yyyy-MM-dd'T'HH:mm:ss\", should be local time, need to specify the time zone. Only used for scheduled webinar and recurring webinar with fixed time.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "timezone": {
+                            "description": "Timezone to format start_time, like \"America/Los_Angeles\". For scheduled webinar only. For this parameter value please refer to the id value in [timezone](#timezones) list.",
+                            "type": "string"
+                        },
+                        "topic": {
+                            "description": "Webinar topic",
+                            "type": "string"
+                        },
+                        "type": {
+                            "default": 5,
+                            "description": "Webinar Type",
+                            "enum": [
+                                5,
+                                6,
+                                9
+                            ],
+                            "type": "integer",
+                            "x-enum-descriptions": [
+                                "Webinar",
+                                "Recurring Webinar with no fixed time",
+                                "Recurring Webinar with fixed time"
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "description": "Webinar object",
+            "type": "object"
+        }
+    }
+}

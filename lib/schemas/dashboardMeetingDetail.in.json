@@ -1,0 +1,18 @@
+{
+    "type": "object",
+    "properties": {
+        "meetingId": {
+            "required": true,
+            "type": "integer"
+        },
+        "type": {
+            "type": "string",
+            "enum": [
+                "past",
+                "pastOne",
+                "live"
+            ],
+            "default": "live"
+        }
+    }
+}

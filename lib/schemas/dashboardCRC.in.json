@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "properties": {
+        "from": {
+            "required": true,
+            "type": "string",
+            "format": "date"
+        },
+        "to": {
+            "required": true,
+            "type": "string",
+            "format": "date"
+        }
+    }
+}

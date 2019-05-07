@@ -1,0 +1,18 @@
+{
+    "type": "object",
+    "properties": {
+        "groupId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "properties": {
+                "name": {
+                    "description": "Group name. Must be unique in one account. Character length is less than 128.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}
