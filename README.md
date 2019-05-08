@@ -1,11 +1,11 @@
-# ![LOGO](logo.png) Zoom MSP Connector
+# ![LOGO](logo.png) Zoom **flow**ground Connector
 
 ## Description
 
-A generated MSP connector for the Zoom API (version 2.0.0).
+A generated **flow**ground connector for the Zoom API (version 2.0.0).
 
 Generated from: https://api.apis.guru/v2/specs/zoom.us/2.0.0/swagger.json<br/>
-Generated at: 2019-05-07T11:25:28+03:00
+Generated at: 2019-05-07T17:45:09+03:00
 
 ## API Description
 
@@ -1086,7 +1086,7 @@ Supported authorization schemes:
 
 ## License
 
-flowground :- Telekom iPaaS / zoom-us-connector<br/>
+**flow**ground :- Telekom iPaaS / zoom-us-connector<br/>
 Copyright © 2019, [Deutsche Telekom AG](https://www.telekom.de)<br/>
 contact: flowground@telekom.de
 
